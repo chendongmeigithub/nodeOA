@@ -1,12 +1,5 @@
 var mysql = require("mysql");
-var pool = mysql.createPool({
-    host: 'qdm158190638.my3w.com',
-    user: 'qdm158190638',
-    password: 'qdm158190638',
-    port: '3306',
-    database: 'qdm158190638_db',
-    insecureAuth: true
-});
+var pool = mysql.createPool();
 var query = function (sql, callback) {
     pool.getConnection(function (err, conn) {
         if (err) {

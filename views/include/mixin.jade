@@ -1,0 +1,12 @@
+//- 引用图片
+mixin img(src)
+    - src = /\.(jpg|png|gif)$/i.test(src) ? src : src + '.png';
+    - src = /\//.test(src) ? src : '../image/' + src;
+    img(src=src)&attributes(attributes)
+
+mixin styles(files)
+    each file in files
+        link(rel="stylesheet" href="#{file}")
+mixin scripts(files)
+    each file in files
+        script(src="#{file}")

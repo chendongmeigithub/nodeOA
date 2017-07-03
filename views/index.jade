@@ -1,5 +1,14 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+extends ./layout/common
+block title
+  title 首页
+block seo
+  meta(name="description",content="首页")
+  meta(name="keywords",content="首页")
+block style
+  +styles([])
+block body
+  - var bodyClass = 'index'
+append content
+  .main
+append script
+  +scripts([])

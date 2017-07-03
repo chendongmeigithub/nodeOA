@@ -8,7 +8,6 @@ fs.readFile('./config/config.json', 'utf-8', function (err, data) {
         console.log("error");
     } else {
         data = JSON.parse(data);
-        console.log(typeof data);
         pool = mysql.createPool(data);
     }
 });

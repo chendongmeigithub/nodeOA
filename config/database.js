@@ -3,7 +3,6 @@ var mysql = require("mysql");
 var pool;
 
 fs.readFile('./config/config.json', 'utf-8', function (err, data) {
-    console.log(err, data);
     if (err) {
         console.log("error");
     } else {

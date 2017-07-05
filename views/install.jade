@@ -1,0 +1,40 @@
+extends ./layout/common
+block title
+    title=title
+block seo
+    meta(name="description",content="首页")
+    meta(name="keywords",content="首页")
+block style
+    +styles([])
+block body
+    - var bodyClass = 'index'
+append content
+    .container
+        .row
+            form.form-horizontal(action="/install/db", method="post")
+                .form-group
+                    label.col-sm-2.control-label host
+                    .col-sm-10
+                        input.form-control(type='text', name="host")
+                .form-group
+                    label.col-sm-2.control-label user
+                    .col-sm-10
+                        input.form-control(type='text', name="user")
+                .form-group
+                    label.col-sm-2.control-label password
+                    .col-sm-10
+                        input.form-control(type='password', name="password")
+                .form-group
+                    label.col-sm-2.control-label port
+                    .col-sm-10
+                        input.form-control(type='text', value="3306", name="port")
+                .form-group
+                    label.col-sm-2.control-label database
+                    .col-sm-10
+                        input.form-control(type='text', name="database")
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-default(type='submit') confirm
+            p=status
+append script
+    +scripts([])

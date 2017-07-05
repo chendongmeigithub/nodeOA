@@ -1,6 +1,6 @@
 extends ./layout/common
 block title
-  title 首页
+  title=title
 block seo
   meta(name="description",content="首页")
   meta(name="keywords",content="首页")
@@ -9,6 +9,6 @@ block style
 block body
   - var bodyClass = 'index'
 append content
-  .main
+  .main=message
 append script
   +scripts([])

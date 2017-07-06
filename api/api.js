@@ -7,10 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    req.io.on('connection', function(socket) {
-        socket.emit('news', req.body);
-    });
-    res.render('index');
+    res.redirect('/api');
 });
 
 module.exports = router;

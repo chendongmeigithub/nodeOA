@@ -1,6 +1,6 @@
 extends ./layout/common
 block title
-  title=title
+  title='ws'
 block seo
   meta(name="description",content="首页")
   meta(name="keywords",content="首页")
@@ -9,6 +9,19 @@ block style
 block body
   - var bodyClass = 'index'
 append content
-  .main=message
+  .main
+    form.form-horizontal(action="/api", method="post")
+      .form-group
+        label.col-sm-2.control-label host
+        .col-sm-10
+          input.form-control(type='text', name="host")
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type='submit') confirm
 append script
-  +scripts([])
+  script.
+      var socket = io.connect("//localhost:3000");
+      socket.on('news', function (data) {
+          console.log(data);
+          socket.emit('my other event', {my: 'data'});
+      });

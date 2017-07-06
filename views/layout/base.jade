@@ -13,7 +13,5 @@ html(lang="en")
     block body
     body(class="#{bodyClass}")
         block main
-        <!--[if lt IE 9]>
-        +scripts(['/libs/jquery/jquery.js', '/libs/bootstrap/js/bootstrap.js'])
-        <![endif]-->
+        +scripts(['/libs/jquery/jquery.js', '/libs/bootstrap/js/bootstrap.js', '/socket.io/socket.io.js'])
         block script

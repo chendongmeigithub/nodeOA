@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var stylus = require('stylus');
 
 var routes = require('./routes');
-
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next) {
+    req.io = io;
+    next();
+});
 
 routes(app);
 
@@ -42,6 +48,12 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//配置端口
+var port = process.env.PORT || 3000;
+http.listen(port,function(){
+    console.log('正在监听3000端口');
 });
 
 module.exports = app;

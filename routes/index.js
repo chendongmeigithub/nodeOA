@@ -2,15 +2,12 @@ var install = require('../page/install'); // 配置数据库信息
 var api = require('../api/api'); // api接口
 var users = require('../page/users'); // 配置数据库信息
 var home = require('../page/home'); // api接口
+var socket = require('../config/socket'); // 配置wbsocket
+
 
 
 module.exports = function (app, io) {
-    io.on('connection', function(socket) {
-        socket.emit('news', {"name": 123123});
-        socket.on('my other event', function (data) {
-            console.log('my other event',data,'my other event');
-        });
-    });
+    socket(io);
     app.get('/', function (req, res) {
         res.redirect('/home');
     });

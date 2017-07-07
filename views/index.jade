@@ -18,9 +18,3 @@ append content
       .form-group
         .col-sm-offset-2.col-sm-10
           button.btn.btn-default(type='submit') confirm
-append script
-  script.
-      var socket = io.connect("//localhost:3000");
-      socket.on('news', function (data) {
-          console.log(data);
-      });

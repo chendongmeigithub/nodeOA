@@ -2,7 +2,7 @@ const configs = {
     port: 7500,
     queryLimit: 1000,
     mysql: {
-        "host":"localhost",
+        "host":"192.168.31.211",
         "user":"root",
         "password":"root",
         "port":"3306",

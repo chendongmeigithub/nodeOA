@@ -1,5 +1,5 @@
 var fs = require('fs');
-var gm = require('gm').subClass({ imageMagick: true });
+var images = require("images");
 
 var saveFile = function (options, base64) {
     var path = './public/library-images/' + options.libraryToken + '/';
@@ -9,14 +9,17 @@ var saveFile = function (options, base64) {
         if(err){
             console.log(err);
         }else{
-            console.log("保存成功！");
             for(var i = 0; i < options.faces.length; i++) {
-                gm(path + options.pictureUrl + '.jpg')
-                    .crop(options.faces[i].face_rectangle.width, options.faces[i].face_rectangle.height, options.faces[i].face_rectangle.left, options.faces[i].face_rectangle.right)
-                    .write(options.faces[i].face_token + '.jpg', function(err) {
-                        console.log(err);
+                console.log(options.faces[i].face_rectangle);
+                images(images(dataBuffer), options.faces[i].face_rectangle.left, options.faces[i].face_rectangle.top, options.faces[i].face_rectangle.width, options.faces[i].face_rectangle.height)
+                    .save(path + options.faces[i].face_token + '.jpg', {
+                        quality : 80
                     });
+                images.gc();
             }
+
+
+
         }
     });
 };

@@ -2,7 +2,6 @@ var request = require("request");
 var connection = require('../db').pool;
 var optFace = require('./optFace');
 var face = require('../config/face');
-var saveFile = require('../config/saveFile');
 
 module.exports = function (req, res) {
     var postParms = {};
@@ -46,10 +45,8 @@ module.exports = function (req, res) {
                         options.libraryToken = postParms.faceset_token;
                         options.count = body.face_count;
                         options.timestamp = Date.parse(new Date())/1000;
+                        options.image_base64 = postParms.image_base64;
                         options.connection = connection;
-
-                        // 存储文件
-                        saveFile(options, postParms.image_base64);
 
                         optFace.addFace(options).then((results) => {
                             res.json({
@@ -59,19 +56,25 @@ module.exports = function (req, res) {
                                 results
                             });
                         }).catch((err) => {
-                            res.json(body);
+                            res.json({
+                                rtn: -1,
+                                message: '图片导入失败',
+                                results: err
+                            });
                         });
                     } else {
                         res.json({
                             rtn: -1,
-                            message: '图片导入失败'
+                            message: '图片导入失败',
+                            results: body
                         });
                     }
                 });
             } else {
                 res.json({
                     rtn: -1,
-                    message: '人脸识别失败'
+                    message: '人脸识别失败',
+                    results: body
                 });
             }
         });

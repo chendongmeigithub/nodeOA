@@ -2,12 +2,12 @@ var install = require('../page/install'); // 配置数据库信息
 var api = require('../api/api'); // api接口
 var users = require('../page/users'); // 配置数据库信息
 var home = require('../page/home'); // api接口
-var socket = require('../config/socket'); // 配置wbsocket
+var socketReg = require('../config/socket'); // 配置wbsocket
 
 
 
 module.exports = function (app, io) {
-    socket(io);
+    socketReg(io);
     app.get('/', function (req, res) {
         res.redirect('/home');
     });

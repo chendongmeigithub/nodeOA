@@ -7,7 +7,8 @@ function getConnection() {
         user: configs.mysql.user,
         password: configs.mysql.password,
         database: configs.mysql.database,
-        dateStrings: configs.mysql.dateStrings
+        dateStrings: configs.mysql.dateStrings,
+        multipleStatements: configs.mysql.multipleStatements
     });
 
     return new Promise((resolve, reject) => {
@@ -27,7 +28,8 @@ const pool = mysql.createPool({
     user: configs.mysql.user,
     password: configs.mysql.password,
     database: configs.mysql.database,
-    dateStrings: configs.mysql.dateStrings
+    dateStrings: configs.mysql.dateStrings,
+    multipleStatements: configs.mysql.multipleStatements
 });
 
 exports.getConnection = getConnection;

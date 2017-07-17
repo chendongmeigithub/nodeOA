@@ -1,10 +1,10 @@
-var query = function (io) {
+var socketReg = function (io) {
     io.on('connection', function(socket) {
-        socket.emit('news', {"name": 123123});
-        socket.on('my other event', function (data) {
-            console.log('my other event',data,'my other event');
+        socket.emit('entrance', {
+            "data": [],
+            "status": 1
         });
     });
 };
 
-module.exports = query;
+module.exports = socketReg;
